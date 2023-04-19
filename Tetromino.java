@@ -108,7 +108,7 @@ public class Tetromino implements Cloneable{
    public boolean canBeRotated(GameGrid grid) {
 	   
 	   int x = bottomLeftCell.getY();
-	   int y = bottomLeftCell.getX();
+	   int y = (int)bottomLeftCell.getX();
 	   int n = tileMatrix.length;
 	   
 	   for(int i = 0 ; i < n ; i++)
