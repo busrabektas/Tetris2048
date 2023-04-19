@@ -42,6 +42,7 @@ public class Tetris2048 {
    public static void gameLoop(GameGrid grid) throws CloneNotSupportedException{
       Tetromino currentTetromino = createTetromino();
       grid.setCurrentTetromino(currentTetromino);
+      grid.latest_tetromino = currentTetromino;
       Tetromino nextTetromino = createTetromino();
       grid.setNextTetromino(nextTetromino);
       grid.ShowNextTetromino();
@@ -65,10 +66,12 @@ public class Tetris2048 {
          else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN))
             // move the active tetromino down by one
             currentTetromino.move("down", grid);
-         else if (StdDraw.isKeyPressed(KeyEvent.VK_BACK_SPACE))
-         	currentTetromino.rotate_ct();         
-         else if (StdDraw.isKeyPressed(KeyEvent.VK_SPACE))           	
-            currentTetromino.rotate();
+         else if (StdDraw.isKeyPressed(KeyEvent.VK_CAPS_LOCK)) {
+        	 if(currentTetromino.canBeRotated(grid))
+         		currentTetromino.rotate_ct();     }    
+         else if (StdDraw.isKeyPressed(KeyEvent.VK_SPACE))
+        	 if(currentTetromino.canBeRotated(grid))
+             	currentTetromino.rotate();
 
 
          
@@ -105,10 +108,13 @@ public class Tetris2048 {
 
          // update the game grid by clearing the full line
          if (fullLine != -1) {
+            grid.update_points_after_clear(fullLine);
             grid.clearFullLine(fullLine);
          }
 
          // display the game grid and the current tetromino
+         grid.merge_all();
+         grid.fall();
          grid.display();
 
       }
