@@ -191,7 +191,7 @@ public class GameGrid implements Cloneable{
    }
    
    public void clearFullLine(int row) {
-      for (int i = 0; i < gridWidth; i++) {
+      for (int i = 0; i < gridWidth - 5; i++) {
          bringDownTiles(row, i);
       }
    }
@@ -199,18 +199,18 @@ public class GameGrid implements Cloneable{
    public int checkFullLine() {
       int row = -1;
       for (int i = 0; i < gridHeight; i++) {
-	 boolean isFilled = true;
-	 for (int j = 0; j < gridWidth; j++) {
-	    if (tileMatrix[i][j] == null) {
-	       isFilled = false;
-	    }
-	 }
-	 if (isFilled) {
-	    row = i;
-	    break;
-	 }
-      }
-      return row;
+	    boolean isFilled = true;
+         for (int j = 0; j < gridWidth - 5; j++) {
+            if (tileMatrix[i][j] == null) {
+               isFilled = false;
+            }
+         }
+         if (isFilled) {
+            row = i;
+            break;
+         }
+          }
+          return row;
    }
 
    public void bringDownTiles(int row, int column) {
