@@ -379,24 +379,6 @@ public class GameGrid implements Cloneable{
 
    }
 
-
- 
-   public void clearFullLine(int row) {
-      while (true) {
-         boolean isLineAboveEmpty = true;
-         for (int i = 0; i < gridWidth; i++) {
-            tileMatrix[row][i] = tileMatrix[row+1][i];
-            if (tileMatrix[row+1][i] != null) {
-               isLineAboveEmpty = false;
-            }
-         }
-         if (isLineAboveEmpty == true) break;
-         row++;
-         }
-      }
-
-
-   
    public int checkFullLine() {
       int row = -1;
       for (int i = 0; i < gridHeight; i++) {
