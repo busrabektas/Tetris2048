@@ -2,7 +2,8 @@ import java.awt.Color; // the color type used in StdDraw
 import java.awt.Font; // the font type used in StdDraw
 import java.awt.event.KeyEvent; // for the key codes used in StdDraw ###tuş aksiyonları
 import java.util.Random;
-
+import javax.xml.stream.events.StartDocument;
+import java.util.concurrent.TimeUnit;
 
 // A class used for modelling the game grid
 public class GameGrid implements Cloneable{
@@ -12,6 +13,7 @@ public class GameGrid implements Cloneable{
    private Tile[][] tileMatrix; // to store the tiles locked on the game grid
    // the tetromino that is currently being moved on the game grid
    private Tetromino currentTetromino = null;
+   public Tetromino latest_tetromino = null;
    private Tetromino nextTetromino = null;
    // the gameOver flag shows whether the game is over or not
    private boolean gameOver = false;
@@ -20,6 +22,9 @@ public class GameGrid implements Cloneable{
    private Color boundaryColor; // the color used for the grid boundaries
    private double lineThickness; // the thickness used for the grid lines
    private double boxThickness; // the thickness used for the grid boundaries
+   public Tile[][] tileUpdate;
+   public boolean isMerged = true;
+   private int points = 0;
    boolean gamePaused = false;
    //GameGrid grid = new GameGrid(gridHeight, gridWidth);
 
@@ -58,7 +63,105 @@ public class GameGrid implements Cloneable{
 
    }
 
-
+   
+   public void merge_all() {
+	   
+	   boolean keep = true;
+	      
+	   while(keep) {
+		   keep = false;
+		   for(int i = 0 ; i < gridWidth ; i++) {  // 13
+			   for(int j = 1 ; j < gridHeight ; j++) { //17
+				   if(tileMatrix[j][i] == null || tileMatrix[j-1][i] == null) {
+					   continue;
+				   }
+				   else if(tileMatrix[j-1][i].getNumber() == tileMatrix[j][i].getNumber()) {
+					   tileMatrix[j-1][i].updateTile(tileMatrix[j-1][i].getNumber()*2);
+					   tileMatrix[j][i] = null;
+					   this.fix_column(i, j);
+					   keep = true;
+				   }
+			   }
+		   }
+		   
+	   }
+	   
+   }  
+   
+   public void fix_column(int column , int row) {
+	   
+	   int x = latest_tetromino.tileMatrix.length;
+	   
+	   boolean keep = true;
+	   while(keep) {
+		   keep = false;
+		   for(int i = row ; i < row+x ; i++) {
+			   if(tileMatrix[i][column] == null && tileMatrix[i-1][column] == null) {
+				   continue;
+			   }
+			   else if(tileMatrix[i-1][column] == null && tileMatrix[i][column] != null) {
+				   tileMatrix[i-1][column] = tileMatrix[i][column];
+				   tileMatrix[i][column] = null;
+				   keep = true;
+			   }
+		   }
+	   }
+	   
+   }
+   
+   public void fall() {
+	  
+	   
+	   boolean keep = true;
+	   
+	   while(keep) {
+		   keep = false;
+		   for(int column = 0 ; column < gridWidth ; column++) {
+			   if(column == 0 || column == gridWidth-1)
+				   continue;
+			   for(int row = 0 ; row < gridHeight ; row++) {
+				   
+				   if(row == gridHeight-1 || row == 0 )
+					   continue;
+				   
+				   if   (     tileMatrix[row][column] != null
+						   && tileMatrix[row+1][column-1] == null 
+						   && tileMatrix[row][column-1] == null 
+						   && tileMatrix[row-1][column-1] == null 
+						   && tileMatrix[row+1][column] == null 
+						   && tileMatrix[row+1][column+1] == null
+						   && tileMatrix[row][column+1] == null 
+						   && tileMatrix[row-1][column+1] == null 
+						   && tileMatrix[row-1][column]== null) {
+					   this.points += tileMatrix[row][column].getNumber();
+					   tileMatrix[row][column] = null;
+					   keep = true;
+				   }
+			   }	   
+		   }
+	   }
+   }
+   
+   public void update_points_after_clear(int line) {
+	      
+	   for(int i = 0 ; i < gridWidth ; i++) {		   
+		   this.points += tileMatrix[line][i].getNumber();	   
+	   }	   
+   }
+   
+   public void fix_fall(int row,int column) {
+	      
+	   for(int i = row ; i > 0 ; i--) {
+	   		if(tileMatrix[i-1][column] == null) {
+	   			tileMatrix[i-1][column] = tileMatrix[i][column];
+	   			tileMatrix[i][column] = null;
+	   			}
+	   		}
+	   }
+   
+      public int get_points() {
+	   return points;
+   }
 
    // A method used for displaying the game grid
    public void display() throws CloneNotSupportedException {
