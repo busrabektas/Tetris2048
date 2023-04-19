@@ -88,6 +88,33 @@ public class GameGrid implements Cloneable{
       StdDraw.pause(50);
 
    }
+   
+   public void clearFullLine(int row) {
+      for (int i = 0; i < gridWidth; i++) {
+         bringDownTiles(row, i);
+      }
+   }
+
+   public void bringDownTiles(int row, int column) {
+
+      boolean isTileAboveEmpty = false;
+
+      while (!isTileAboveEmpty) {
+
+         if (row != gridHeight - 1) {
+            tileMatrix[row][column] = tileMatrix[row + 1][column];
+         } else {
+            tileMatrix[row][column] = null;
+            break;
+         }
+
+         if (tileMatrix[row + 1][column] == null) {
+            isTileAboveEmpty = true;
+         }
+
+         row++;
+      }
+   }
 
    // A method for drawing the cells and the lines of the game grid
    public void drawGrid() {
