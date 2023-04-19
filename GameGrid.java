@@ -142,7 +142,7 @@ public class GameGrid implements Cloneable{
    
    public void update_points_after_clear(int line) {
 	      
-	   for(int i = 0 ; i < gridWidth ; i++) {		   
+	   for(int i = 0 ; i < gridWidth - 5 ; i++) {		   
 		   this.points += tileMatrix[line][i].getNumber();	   
 	   }	   
    }
@@ -214,25 +214,16 @@ public class GameGrid implements Cloneable{
    }
 
    public void bringDownTiles(int row, int column) {
-
-      boolean isTileAboveEmpty = false;
-
-      while (!isTileAboveEmpty) {
-
-         if (row != gridHeight - 1) {
-            tileMatrix[row][column] = tileMatrix[row + 1][column];
-         } else {
-            tileMatrix[row][column] = null;
-            break;
-         }
-
-         if (tileMatrix[row + 1][column] == null) {
-            isTileAboveEmpty = true;
-         }
-
-         row++;
-      }
-   }
+        while (true) {
+            if (row != gridHeight - 1) {
+                tileMatrix[row][column] = tileMatrix[row + 1][column];
+            } else {
+                tileMatrix[row][column] = null;
+                break;
+            }
+            row++;
+        }
+    }
 
    // A method for drawing the cells and the lines of the game grid
    public void drawGrid() {
