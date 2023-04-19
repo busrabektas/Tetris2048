@@ -29,8 +29,6 @@ public class GameGrid implements Cloneable{
    //GameGrid grid = new GameGrid(gridHeight, gridWidth);
 
 
-   
-
    // A constructor for creating the game grid based on the given parameters
    public GameGrid(int gridH, int gridW) {
       // set the size of the game grid as the given values for the parameters
@@ -196,6 +194,23 @@ public class GameGrid implements Cloneable{
       for (int i = 0; i < gridWidth; i++) {
          bringDownTiles(row, i);
       }
+   }
+	
+   public int checkFullLine() {
+      int row = -1;
+      for (int i = 0; i < gridHeight; i++) {
+	 boolean isFilled = true;
+	 for (int j = 0; j < gridWidth; j++) {
+	    if (tileMatrix[i][j] == null) {
+	       isFilled = false;
+	    }
+	 }
+	 if (isFilled) {
+	    row = i;
+	    break;
+	 }
+      }
+      return row;
    }
 
    public void bringDownTiles(int row, int column) {
@@ -379,22 +394,6 @@ public class GameGrid implements Cloneable{
 
    }
 
-   public int checkFullLine() {
-      int row = -1;
-      for (int i = 0; i < gridHeight; i++) {
-         boolean isFilled = true;
-         for (int j = 0; j < gridWidth; j++) {
-            if (tileMatrix[i][j] == null) {
-               isFilled = false;
-            }
-         }
-         if (isFilled) {
-            row = i;
-            break;
-         }
-      }
-      return row;
-   }
    
 }
 
