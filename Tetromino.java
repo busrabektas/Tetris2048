@@ -52,34 +52,34 @@ public class Tetromino implements Cloneable{
       } else if (type == 'L') {
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino O in its initial orientation
-         occupiedTiles[0] = new Point(1, 0); // (column_index, row_index)
-         occupiedTiles[1] = new Point(1, 1);
-         occupiedTiles[2] = new Point(1, 2);
-         occupiedTiles[3] = new Point(2, 2);
+         occupiedTiles[0] = new Point(0, 0);
+         occupiedTiles[1] = new Point(0, 1); // (column_index, row_index)
+	 occupiedTiles[2] = new Point(0, 2);
+	 occupiedTiles[3] = new Point(1, 2);
 
 
       } else if (type == 'J') {
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino O in its initial orientation
-         occupiedTiles[0] = new Point(2, 0); // (column_index, row_index)
-         occupiedTiles[1] = new Point(2, 1);
-         occupiedTiles[2] = new Point(2, 2);
-         occupiedTiles[3] = new Point(1, 2);
+         occupiedTiles[0] = new Point(1, 0);
+         occupiedTiles[1] = new Point(1, 1); // (column_index, row_index)
+	 occupiedTiles[2] = new Point(1, 2);
+	 occupiedTiles[3] = new Point(0, 2);
 
       } else if (type == 'S') {
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino O in its initial orientation
-         occupiedTiles[0] = new Point(0, 1); // (column_index, row_index)
-         occupiedTiles[1] = new Point(1, 0);
-         occupiedTiles[2] = new Point(1, 1);
-         occupiedTiles[3] = new Point(2, 0);
+         occupiedTiles[0] = new Point(0, 1);
+         occupiedTiles[1] = new Point(1, 0); // (column_index, row_index)
+	 occupiedTiles[2] = new Point(1, 1);
+	 occupiedTiles[3] = new Point(2, 0);
       } else if (type == 'T') {
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino O in its initial orientation
-         occupiedTiles[0] = new Point(0, 0); // (column_index, row_index)
-         occupiedTiles[1] = new Point(1, 0);
-         occupiedTiles[2] = new Point(2, 0);
-         occupiedTiles[3] = new Point(1, 1);
+	 occupiedTiles[0] = new Point(0, 0);
+	 occupiedTiles[1] = new Point(1, 0); // (column_index, row_index)
+ 	 occupiedTiles[2] = new Point(2, 0);
+	 occupiedTiles[3] = new Point(1, 1);
       } else { // type == 'Z'
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino Z in its initial orientation
@@ -104,7 +104,228 @@ public class Tetromino implements Cloneable{
       bottomLeftCell.setX(random.nextInt(Math.max(0,gridWidth - n-4)));
       
    }
-
+	
+   public boolean canBeRotated(GameGrid grid) {
+	   
+	   int x = bottomLeftCell.getY();
+	   int y = bottomLeftCell.getX();
+	   int n = tileMatrix.length;
+	   
+	   for(int i = 0 ; i < n ; i++)
+		   for(int j = 0 ; j < n ; j++) {
+			   if(grid.isOccupied(x+i, y+j))
+				   return false;
+		   }
+	   
+	   if( y < 0 || y+n > gridWidth )
+		   return false;
+	   
+		   return true;
+   }	
+	
+   public void rotate() {
+	   
+	   	int x = 0, y =0;
+	   		
+	   	int length = tileMatrix.length;
+	   	if(length ==2) {
+	   		Tile temp;
+	   		Tile temp0;
+	   		
+	   		temp = tileMatrix[0][1];
+	   		tileMatrix[0][1] = tileMatrix[0][0];
+   		
+	   		temp0 = tileMatrix[1][1];
+	   		tileMatrix[1][1] = temp;
+	   		temp = temp0;
+   			
+	   		temp0 = tileMatrix[1][0];
+	   		tileMatrix[1][0] = temp;
+	   		temp = temp0;
+   		
+	   		tileMatrix[0][0] = temp;
+	   		}
+	   	else if(length == 3) {
+	   		//köşeler
+	   		Tile temp = tileMatrix[x][y+2];
+	   		tileMatrix[x][y+2] = tileMatrix[x][y];
+	   		
+	   		Tile temp0 = tileMatrix[x+2][y+2];
+	   		tileMatrix[x+2][y+2] = temp;
+	   		temp = temp0;
+	   		
+	   		temp0 = tileMatrix[x+2][y];
+	   		tileMatrix[x+2][y] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[x][y] = temp;
+	   		//ortalar
+	   		temp = tileMatrix[x+1][y+2];
+	   		tileMatrix[x+1][y+2] = tileMatrix[x][y+1];
+	   		
+	   		temp0 = tileMatrix[x+2][y+1];
+	   		tileMatrix[x+2][y+1] = temp;
+	   		temp = temp0;
+	   		
+	   		temp0 = tileMatrix[x+1][y];
+	   		tileMatrix[x+1][y] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[x][y+1] = temp;
+	   	}
+	   	else if(length == 4){
+	   		Tile temp = null;
+	   		Tile temp0 = null;
+	   		//köşeler
+	   		temp = tileMatrix[0][3];
+	   		tileMatrix[0][3] = tileMatrix[0][0];
+	   		
+	   		temp0 = tileMatrix[3][3];
+	   		tileMatrix[3][3] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[3][0];
+	   		tileMatrix[3][0] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[0][0] = temp;
+	   		//kenarlar-üst
+	   		temp = tileMatrix[0][2];
+	   		tileMatrix[0][2] = tileMatrix[1][0];
+	   		
+	   		temp0 = tileMatrix[2][3];
+	   		tileMatrix[2][3] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[3][1];
+	   		tileMatrix[3][1] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[1][0] = temp;
+	   		//kenarlar-alt
+	   		temp = tileMatrix[0][1];
+	   		tileMatrix[0][1] = tileMatrix[2][0];
+	   		
+	   		temp0 = tileMatrix[1][3];
+	   		tileMatrix[1][3] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[3][2];
+	   		tileMatrix[3][2] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[2][0] = temp;
+	   		//orta-2x2
+	   		temp = tileMatrix[1][2];
+	   		tileMatrix[1][2] = tileMatrix[1][1];
+	   		
+	   		temp0 = tileMatrix[2][2];
+	   		tileMatrix[2][2] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[2][1];
+	   		tileMatrix[2][1] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[1][1] = temp;
+	  }	
+	   	
+   }
+    public void rotate_ct() {
+	   
+	   	int x = 0, y =0;
+	   		
+	   	int length = tileMatrix.length;
+	   	if(length ==2){
+	   		Tile temp;
+	   		Tile temp0;
+	   		temp = tileMatrix[1][0];
+	   		tileMatrix[1][0] = tileMatrix[0][0];
+	   		
+	   		temp0 = tileMatrix[1][1];
+	   		tileMatrix[1][1] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[0][1];
+	   		tileMatrix[0][1] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[0][0] = temp;
+	   	}
+	   	else if(length == 3) {
+	   		//köşeler
+	   		Tile temp = tileMatrix[x+2][y];
+	   		tileMatrix[x+2][y] = tileMatrix[x][y];
+	   		
+	   		Tile temp0 = tileMatrix[x+2][y+2];
+	   		tileMatrix[x+2][y+2] = temp;
+	   		temp = temp0;
+	   		
+	   		temp0 = tileMatrix[x][y+2];
+	   		tileMatrix[x][y+2] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[x][y] = temp;
+	   		//ortalar
+	   		temp = tileMatrix[x][y+1];
+	   		tileMatrix[x][y+1] = tileMatrix[x+1][y+2];
+	   		
+	   		temp0 = tileMatrix[x+1][y];
+	   		tileMatrix[x+1][y] = temp;
+	   		temp = temp0;
+	   		
+	   		temp0 = tileMatrix[x+2][y+1];
+	   		tileMatrix[x+2][y+1] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[x+1][y+2] = temp;
+	   	}
+	   	else if(length == 4){
+	   		Tile temp = null;
+	   		Tile temp0 = null;
+	   		//köşeler
+	   		temp = tileMatrix[3][0];
+	   		tileMatrix[3][0] = tileMatrix[0][0];
+	   		
+	   		temp0 = tileMatrix[3][3];
+	   		tileMatrix[3][3] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[0][3];
+	   		tileMatrix[0][3] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[0][0] = temp;
+	   		//kenarlar-üst
+	   		temp = tileMatrix[1][0];
+	   		tileMatrix[1][0] = tileMatrix[0][2];
+	   		
+	   		temp0 = tileMatrix[3][1];
+	   		tileMatrix[3][1] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[2][3];
+	   		tileMatrix[2][3] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[0][2] = temp;
+	   		//kenarlar-alt
+	   		temp = tileMatrix[2][0];
+	   		tileMatrix[2][0] = tileMatrix[0][1];
+	   		
+	   		temp0 = tileMatrix[3][2];
+	   		tileMatrix[3][2] = temp;
+	   		temp = temp0;
+	   			
+	   		temp0 = tileMatrix[1][3];
+	   		tileMatrix[1][3] = temp;
+	   		temp = temp0;
+	   		
+	   		tileMatrix[0][1] = temp;
+	   		
+	  }	
+	}
+  	 
    // A method that returns the position of the cell in the tile matrix with
    // the given row and column indexes
    public Point getCellPosition(int row, int col) {
@@ -306,208 +527,7 @@ public class Tetromino implements Cloneable{
 
 
    }  
-   public void rotate() {
-	   
-      int x = 0, y =0;
-         
-      int length = tileMatrix.length;
-      if(length ==2) {
-         Tile temp;
-         Tile temp0;
-         
-         temp = tileMatrix[0][1];
-         tileMatrix[0][1] = tileMatrix[0][0];
-      
-         temp0 = tileMatrix[1][1];
-         tileMatrix[1][1] = temp;
-         temp = temp0;
-         
-         temp0 = tileMatrix[1][0];
-         tileMatrix[1][0] = temp;
-         temp = temp0;
-      
-         tileMatrix[0][0] = temp;
-         }
-      else if(length == 3) {
-         //köşeler
-         Tile temp = tileMatrix[x][y+2];
-         tileMatrix[x][y+2] = tileMatrix[x][y];
-         
-         Tile temp0 = tileMatrix[x+2][y+2];
-         tileMatrix[x+2][y+2] = temp;
-         temp = temp0;
-         
-         temp0 = tileMatrix[x+2][y];
-         tileMatrix[x+2][y] = temp;
-         temp = temp0;
-         
-         tileMatrix[x][y] = temp;
-         //ortalar
-         temp = tileMatrix[x+1][y+2];
-         tileMatrix[x+1][y+2] = tileMatrix[x][y+1];
-         
-         temp0 = tileMatrix[x+2][y+1];
-         tileMatrix[x+2][y+1] = temp;
-         temp = temp0;
-         
-         temp0 = tileMatrix[x+1][y];
-         tileMatrix[x+1][y] = temp;
-         temp = temp0;
-         
-         tileMatrix[x][y+1] = temp;
-      }
-      else if(length == 4){
-         Tile temp = null;
-         Tile temp0 = null;
-         //köşeler
-         temp = tileMatrix[0][3];
-         tileMatrix[0][3] = tileMatrix[0][0];
-         
-         temp0 = tileMatrix[3][3];
-         tileMatrix[3][3] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[3][0];
-         tileMatrix[3][0] = temp;
-         temp = temp0;
-         
-         tileMatrix[0][0] = temp;
-         //kenarlar-üst
-         temp = tileMatrix[0][2];
-         tileMatrix[0][2] = tileMatrix[1][0];
-         
-         temp0 = tileMatrix[2][3];
-         tileMatrix[2][3] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[3][1];
-         tileMatrix[3][1] = temp;
-         temp = temp0;
-         
-         tileMatrix[1][0] = temp;
-         //kenarlar-alt
-         temp = tileMatrix[0][1];
-         tileMatrix[0][1] = tileMatrix[2][0];
-         
-         temp0 = tileMatrix[1][3];
-         tileMatrix[1][3] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[3][2];
-         tileMatrix[3][2] = temp;
-         temp = temp0;
-         
-         tileMatrix[2][0] = temp;
-         //orta-2x2
-         temp = tileMatrix[1][2];
-         tileMatrix[1][2] = tileMatrix[1][1];
-         
-         temp0 = tileMatrix[2][2];
-         tileMatrix[2][2] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[2][1];
-         tileMatrix[2][1] = temp;
-         temp = temp0;
-         
-         tileMatrix[1][1] = temp;
-  }	
-      
-}
-   public void rotate_ct() {
-         
-      int x = 0, y =0;
-         
-      int length = tileMatrix.length;
-      if(length ==2){
-         Tile temp;
-         Tile temp0;
-         temp = tileMatrix[1][0];
-         tileMatrix[1][0] = tileMatrix[0][0];
-         
-         temp0 = tileMatrix[1][1];
-         tileMatrix[1][1] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[0][1];
-         tileMatrix[0][1] = temp;
-         temp = temp0;
-         
-         tileMatrix[0][0] = temp;
-      }
-      else if(length == 3) {
-         //köşeler
-         Tile temp = tileMatrix[x+2][y];
-         tileMatrix[x+2][y] = tileMatrix[x][y];
-         
-         Tile temp0 = tileMatrix[x+2][y+2];
-         tileMatrix[x+2][y+2] = temp;
-         temp = temp0;
-         
-         temp0 = tileMatrix[x][y+2];
-         tileMatrix[x][y+2] = temp;
-         temp = temp0;
-         
-         tileMatrix[x][y] = temp;
-         //ortalar
-         temp = tileMatrix[x][y+1];
-         tileMatrix[x][y+1] = tileMatrix[x+1][y+2];
-         
-         temp0 = tileMatrix[x+1][y];
-         tileMatrix[x+1][y] = temp;
-         temp = temp0;
-         
-         temp0 = tileMatrix[x+2][y+1];
-         tileMatrix[x+2][y+1] = temp;
-         temp = temp0;
-         
-         tileMatrix[x+1][y+2] = temp;
-      }
-      else if(length == 4){
-         Tile temp = null;
-         Tile temp0 = null;
-         //köşeler
-         temp = tileMatrix[3][0];
-         tileMatrix[3][0] = tileMatrix[0][0];
-         
-         temp0 = tileMatrix[3][3];
-         tileMatrix[3][3] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[0][3];
-         tileMatrix[0][3] = temp;
-         temp = temp0;
-         
-         tileMatrix[0][0] = temp;
-         //kenarlar-üst
-         temp = tileMatrix[1][0];
-         tileMatrix[1][0] = tileMatrix[0][2];
-         
-         temp0 = tileMatrix[3][1];
-         tileMatrix[3][1] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[2][3];
-         tileMatrix[2][3] = temp;
-         temp = temp0;
-         
-         tileMatrix[0][2] = temp;
-         //kenarlar-alt
-         temp = tileMatrix[2][0];
-         tileMatrix[2][0] = tileMatrix[0][1];
-         
-         temp0 = tileMatrix[3][2];
-         tileMatrix[3][2] = temp;
-         temp = temp0;
-            
-         temp0 = tileMatrix[1][3];
-         tileMatrix[1][3] = temp;
-         temp = temp0;
-         
-         tileMatrix[0][1] = temp;
-         
-   }	
-   }
+   
 
 
 
