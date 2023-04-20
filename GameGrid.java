@@ -76,6 +76,7 @@ public class GameGrid implements Cloneable{
 					   continue;
 				   }
 				   else if(tileMatrix[j-1][i].getNumber() == tileMatrix[j][i].getNumber()) {
+					   this.points+=tileMatrix[j-1][i].getNumber()*2;
 					   tileMatrix[j-1][i].updateTile(tileMatrix[j-1][i].getNumber()*2);
 					   tileMatrix[j][i] = null;
 					   this.fix_column(i, j);
