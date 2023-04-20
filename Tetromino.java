@@ -7,7 +7,7 @@ public class Tetromino implements Cloneable{
    // Data fields: instance variables
    // --------------------------------------------------------------------------
    private char type; // the type (shape) of the tetromino
-   private Tile[][] tileMatrix; // the tiles on the tetromino shaped by its type
+   public Tile[][] tileMatrix; // the tiles on the tetromino shaped by its type
    // the position of the bottom left cell in the tile matrix is stored as
    // the position of the tetromino
    Point bottomLeftCell = new Point();
