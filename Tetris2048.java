@@ -289,11 +289,6 @@ public class Tetris2048 {
 
    }
 
-   public static void enableDoubleBuffering() {
-
-
-
-   }
 
 
 }
