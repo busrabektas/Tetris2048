@@ -328,7 +328,7 @@ public class GameGrid implements Cloneable{
          copyNext.bottomLeftCell.setY(height);
       }
       else if(copyNext.getType() == 'J' || copyNext.getType() == 'L' ){
-         double width =this.gridWidth- 4.5;
+         double width =this.gridWidth- 3.5;
          copyNext.bottomLeftCell.setX(width);
          int height = this.gridHeight-15;  
          copyNext.bottomLeftCell.setY(height);
