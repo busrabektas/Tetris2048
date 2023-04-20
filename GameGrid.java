@@ -178,6 +178,7 @@ public class GameGrid implements Cloneable{
       ShowNextTetromino();
       checkFullLine();
       clearFullLine(gridWidth);
+      showPointOnGrid();
       PauseGame();
       
 
@@ -358,6 +359,16 @@ public class GameGrid implements Cloneable{
 
       copyNext.draw();
 
+      }
+	
+    public void showPointOnGrid(){
+         Font font = new Font("Georgia", Font.BOLD, 35);
+         StdDraw.setFont(font);
+         StdDraw.text(13, 17, "SCORE");
+         StdDraw.text(13, 16, ""+get_points());
+   
+    
+   
       }
 
    public void PauseGame() throws CloneNotSupportedException{
