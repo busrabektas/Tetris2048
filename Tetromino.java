@@ -117,7 +117,7 @@ public class Tetromino implements Cloneable{
 				   return false;
 		   }
 	   
-	   if( y < 0 || y+n > gridWidth )
+	   if( y < 0 || y+n > gridWidth-5 )
 		   return false;
 	   
 		   return true;
