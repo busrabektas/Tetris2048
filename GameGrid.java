@@ -37,10 +37,10 @@ public class GameGrid implements Cloneable{
       // create the tile matrix to store the tiles locked on the game grid
       tileMatrix = new Tile[gridHeight][gridWidth];
       // set the color used for the empty grid cells
-      emptyCellColor = new Color(42, 69, 99);
+      emptyCellColor = new Color(181, 189, 194, 255);
       // set the colors used for the grid lines and the grid boundaries
-      lineColor = new Color(0, 100, 200);
-      boundaryColor = new Color(0, 100, 200);
+      lineColor = new Color(56, 59, 56);
+      boundaryColor = new Color(56, 59, 56);
       // set the thickness values used for the grid lines and the grid boundaries
       lineThickness = 0.002;
       boxThickness = 10 * lineThickness;
