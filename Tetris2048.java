@@ -136,9 +136,9 @@ public class Tetris2048 {
       public static void PauseMenu(int gridHeight, int gridWidth) throws CloneNotSupportedException {
          // colors used for the menu
          GameGrid grid = new GameGrid(gridHeight, gridWidth);
-         Color backgroundColor = new Color(42, 69, 99);
-         Color buttonColor = new Color(25, 255, 228);
-         Color textColor = new Color(31, 160, 239);
+         Color backgroundColor = new Color(7, 48, 58);
+         Color buttonColor = new Color(255, 255, 255);
+         Color textColor = new Color(48, 93, 74);
          // clear the background canvas to background_color
          StdDraw.clear(backgroundColor);
          // the relative path of the image file
@@ -214,9 +214,9 @@ public class Tetris2048 {
    public static void displayGameMenu(int gridHeight, int gridWidth) throws CloneNotSupportedException {
       // colors used for the menu
       GameGrid grid = new GameGrid(gridHeight, gridWidth);
-      Color backgroundColor = new Color(42, 69, 99);
-      Color buttonColor = new Color(25, 255, 228);
-      Color textColor = new Color(31, 160, 239);
+      Color backgroundColor = new Color(7, 48, 58);
+      Color buttonColor = new Color(255, 255, 255);
+      Color textColor = new Color(48, 93, 74);
       // clear the background canvas to background_color
       StdDraw.clear(backgroundColor);
       // the relative path of the image file
