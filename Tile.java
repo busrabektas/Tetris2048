@@ -28,17 +28,17 @@ public class Tile {
    // the default constructor that creates a tile with 2 as the number on it
    public Tile() {
       // fill the color map
-      tile_colors.put(2, new Color(151, 178, 199));
-      tile_colors.put(4, new Color(130, 247, 235));
-      tile_colors.put(8, new Color(51, 180, 174));
-      tile_colors.put(16, new Color(22, 129, 140));
-      tile_colors.put(32, new Color(33, 174, 229));
-      tile_colors.put(64,  new Color(17, 133, 197));
-      tile_colors.put(128, new Color(23, 107, 203));
-      tile_colors.put(256, new Color(13, 67, 133));
-      tile_colors.put(512, new Color(74, 82, 217));
-      tile_colors.put(1024, new Color(62, 58, 168));
-      tile_colors.put(2048, new Color(50, 35, 154));
+      tile_colors.put(2, new Color(243, 240, 202, 255));
+      tile_colors.put(4, new Color(238, 195, 120));
+      tile_colors.put(8, new Color(241, 167, 116));
+      tile_colors.put(16, new Color(229, 117, 28));
+      tile_colors.put(32, new Color(239, 85, 59));
+      tile_colors.put(64,  new Color(187, 58, 38));
+      tile_colors.put(128, new Color(140, 52, 52));
+      tile_colors.put(256, new Color(210, 31, 85));
+      tile_colors.put(512, new Color(112, 12, 55));
+      tile_colors.put(1024, new Color(154, 20, 114));
+      tile_colors.put(2048, new Color(101, 11, 91));
 
       // set the number on the tile
       int[] numberList = {2, 4};
@@ -47,8 +47,8 @@ public class Tile {
       number = numberList[randomTileNumber];
       // set the colors of the tile
       backgroundColor = tile_colors.get(number);
-      foregroundColor = new Color(0, 100, 200);
-      boxColor = new Color(0, 100, 200);
+      foregroundColor = new Color(175, 186, 222);
+      boxColor = new Color(16, 21, 21);
    }
 
    public int getNumber() {
