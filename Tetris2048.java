@@ -226,9 +226,9 @@ public class Tetris2048 {
       // display the image
       StdDraw.picture(imgCenterX, imgCenterY, imgFile);
       // the width and the height of the start game button
-      double buttonW = gridWidth - 1.5, buttonH = 2;
+      double buttonW = gridWidth - 6, buttonH = 2;
       // the center point coordinates of the start game button
-      double buttonX = imgCenterX, buttonY = 7;
+      double buttonX = imgCenterX, buttonY = 5;
       // display the start game button as a filled rectangle
       StdDraw.setPenColor(buttonColor);
       StdDraw.filledRectangle(buttonX, buttonY, buttonW / 2, buttonH / 2);
