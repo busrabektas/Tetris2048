@@ -57,9 +57,6 @@ public class GameGrid implements Cloneable{
    public void setNextTetromino(Tetromino nextTetromino){
       this.nextTetromino = nextTetromino;
    }
-   public void setNewTetromino(Tetromino newTetromino){
-
-   }
 
    
    public void merge_all() {
