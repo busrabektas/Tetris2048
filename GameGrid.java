@@ -364,6 +364,8 @@ public class GameGrid implements Cloneable{
 	
     public void showPointOnGrid(){
          Font font = new Font("Georgia", Font.BOLD, 35);
+         Color textColor = new Color(56, 59, 56);
+         StdDraw.setPenColor(textColor);
          StdDraw.setFont(font);
          StdDraw.text(13, 17, "SCORE");
          StdDraw.text(13, 16, ""+get_points());
@@ -377,7 +379,7 @@ public class GameGrid implements Cloneable{
       double buttonH = 0.9;
       double buttonX = gridWidth-3;
       double buttonY = gridHeight-18;
-      Color buttonColor = new Color(0, 100, 200);
+      Color buttonColor =new Color(56, 59, 56);
       Color textColor = new Color(255,255,255);
       StdDraw.setPenColor(buttonColor);
       StdDraw.filledRectangle(buttonX, buttonY, buttonW/2, buttonH/2);
