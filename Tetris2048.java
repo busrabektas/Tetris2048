@@ -66,10 +66,10 @@ public class Tetris2048 {
          else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN))
             // move the active tetromino down by one
             currentTetromino.move("down", grid);
-         else if (StdDraw.isKeyPressed(KeyEvent.VK_CAPS_LOCK)) {
+         else if (StdDraw.isKeyPressed(KeyEvent.VK_Z)) {
         	 if(currentTetromino.canBeRotated(grid))
          		currentTetromino.rotate_ct();     }    
-         else if (StdDraw.isKeyPressed(KeyEvent.VK_SPACE))
+         else if (StdDraw.isKeyPressed(KeyEvent.VK_X))
         	 if(currentTetromino.canBeRotated(grid))
              	currentTetromino.rotate();
 
@@ -120,59 +120,37 @@ public class Tetris2048 {
       }
 
    }
-   // A method for creating a random shaped tetromino to enter the game grid *********
-   public static Tetromino createTetromino() {
-      // the type (shape) of the tetromino is determined randomly
-      char[] tetrominoTypes = { 'I', 'O', 'Z','L','J','S','T' };
-      Random random = new Random();
-      int randomIndex = random.nextInt(tetrominoTypes.length);
-      char randomType = tetrominoTypes[randomIndex];
-      // create and return the tetromino
-      Tetromino tetromino = new Tetromino(randomType);
-      return tetromino;
-   }
-
       // A method for displaying a simple menu before starting the game**********
       public static void PauseMenu(int gridHeight, int gridWidth) throws CloneNotSupportedException {
          // colors used for the menu
          GameGrid grid = new GameGrid(gridHeight, gridWidth);
-         Color backgroundColor = new Color(7, 48, 58);
-         Color buttonColor = new Color(255, 255, 255);
-         Color textColor = new Color(48, 93, 74);
+         Color backgroundColor = new Color(	0, 74, 173);
          // clear the background canvas to background_color
          StdDraw.clear(backgroundColor);
          // the relative path of the image file
-         String imgFile = "images/Picture1.png";
+         String imgFile = "images/logooo.png";
+         String imgFile2 = "images/resumeButton.png";
+         String imgFile3 = "images/restartButton.png";
+
          // center coordinates to display the image
-         double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 7;
+         double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 8;
          // display the image
-         StdDraw.picture(imgCenterX, imgCenterY, imgFile);
+         StdDraw.picture(imgCenterX+0.45, imgCenterY, imgFile);
          // the width and the height of the start game button
 
          double buttonW2 = 6.5, buttonH2 = 2;
          // the center point coordinates of the start game button
-         double buttonX2 = imgCenterX-4, buttonY2 = 3;
-         // display the start game button as a filled rectangle
-         StdDraw.setPenColor(buttonColor);
-         StdDraw.filledRectangle(buttonX2, buttonY2, buttonW2 / 2, buttonH2 / 2);
-         // display the text on the start game button
-         Font font2 = new Font("Arial", Font.PLAIN, 25);
-         StdDraw.setFont(font2);
-         StdDraw.setPenColor(textColor);
-         String textToDisplay2 = "Resume";
-         StdDraw.text(buttonX2, buttonY2, textToDisplay2);
-   
+         double buttonX2 = imgCenterX-4, buttonY2 = 5;
+
+
+         StdDraw.picture(buttonX2+0.8, buttonY2, imgFile2);
+
          double buttonW3 = 6.5, buttonH3 = 2;
          // the center point coordinates of the start game button
-         double buttonX3 = imgCenterX+4, buttonY3 = 3;
-         // display the start game button as a filled rectangle
-         StdDraw.setPenColor(buttonColor);
-         StdDraw.filledRectangle(buttonX3, buttonY3, buttonW3 / 2, buttonH3 / 2);
-         // display the text on the start game button
-         StdDraw.setFont(font2);
-         StdDraw.setPenColor(textColor);
-         String textToDisplay3 = "Restart";
-         StdDraw.text(buttonX3, buttonY3, textToDisplay3);
+         double buttonX3 = imgCenterX+4, buttonY3 = 5;
+
+         StdDraw.picture(buttonX3, buttonY3, imgFile3);
+
    
          // menu interaction loop
          while (true) {
@@ -202,30 +180,24 @@ public class Tetris2048 {
    public static void displayGameMenu(int gridHeight, int gridWidth) throws CloneNotSupportedException {
       // colors used for the menu
       GameGrid grid = new GameGrid(gridHeight, gridWidth);
-      Color backgroundColor = new Color(7, 48, 58);
+      Color backgroundColor = new Color(	0, 74, 173);
       Color buttonColor = new Color(255, 255, 255);
-      Color textColor = new Color(48, 93, 74);
+      Color textColor = new Color(	0, 74, 173);
       // clear the background canvas to background_color
       StdDraw.clear(backgroundColor);
       // the relative path of the image file
-      String imgFile = "images/Picture1.png";
+      String imgFile = "images/logooo.png";
+      String imgFile2 = "images/startButton.png";
       // center coordinates to display the image
-      double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 7;
+      double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 8;
       // display the image
-      StdDraw.picture(imgCenterX, imgCenterY, imgFile);
+      StdDraw.picture(imgCenterX+0.45, imgCenterY, imgFile);
       // the width and the height of the start game button
       double buttonW = gridWidth - 6, buttonH = 2;
       // the center point coordinates of the start game button
       double buttonX = imgCenterX, buttonY = 5;
       // display the start game button as a filled rectangle
-      StdDraw.setPenColor(buttonColor);
-      StdDraw.filledRectangle(buttonX, buttonY, buttonW / 2, buttonH / 2);
-      // display the text on the start game button
-      Font font = new Font("Arial", Font.PLAIN, 25);
-      StdDraw.setFont(font);
-      StdDraw.setPenColor(textColor);
-      String textToDisplay = "Click Here to Start the Game";
-      StdDraw.text(buttonX, buttonY, textToDisplay);
+      StdDraw.picture(buttonX+0.2, buttonY, imgFile2);
 
 
       // menu interaction loop
