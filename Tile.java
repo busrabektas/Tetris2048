@@ -47,10 +47,9 @@ public class Tile {
       number = numberList[randomTileNumber];
       // set the colors of the tile
       backgroundColor = tile_colors.get(number);
-      foregroundColor = new Color(175, 186, 222);
+      foregroundColor = new Color(0,0,0);
       boxColor = new Color(16, 21, 21);
    }
-
    public int getNumber() {
       return number;
    }
