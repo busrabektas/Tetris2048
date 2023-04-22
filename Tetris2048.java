@@ -142,24 +142,12 @@ public class Tetris2048 {
          // clear the background canvas to background_color
          StdDraw.clear(backgroundColor);
          // the relative path of the image file
-         String imgFile = "images/menu_image.png";
+         String imgFile = "images/Picture1.png";
          // center coordinates to display the image
          double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 7;
          // display the image
          StdDraw.picture(imgCenterX, imgCenterY, imgFile);
          // the width and the height of the start game button
-         double buttonW = gridWidth - 1.5, buttonH = 2;
-         // the center point coordinates of the start game button
-         double buttonX = imgCenterX, buttonY = 7;
-         // display the start game button as a filled rectangle
-         Font font = new Font("Arial", Font.BOLD, 50);
-         StdDraw.setFont(font);
-         StdDraw.setPenColor(textColor);
-         String text = "GAME PAUSED";
-         StdDraw.text(buttonX,buttonY,text);
-
-         StdDraw.setFont(font);
-         StdDraw.setPenColor(textColor);
 
          double buttonW2 = 6.5, buttonH2 = 2;
          // the center point coordinates of the start game button
@@ -220,7 +208,7 @@ public class Tetris2048 {
       // clear the background canvas to background_color
       StdDraw.clear(backgroundColor);
       // the relative path of the image file
-      String imgFile = "images/menu_image.png";
+      String imgFile = "images/Picture1.png";
       // center coordinates to display the image
       double imgCenterX = (gridWidth - 1) / 2.0, imgCenterY = gridHeight - 7;
       // display the image
@@ -238,30 +226,7 @@ public class Tetris2048 {
       StdDraw.setPenColor(textColor);
       String textToDisplay = "Click Here to Start the Game";
       StdDraw.text(buttonX, buttonY, textToDisplay);
-      // double buttonW2 = 6.5, buttonH2 = 2;
-      // // the center point coordinates of the start game button
-      // double buttonX2 = imgCenterX-4, buttonY2 = 3;
-      // // display the start game button as a filled rectangle
-      // StdDraw.setPenColor(buttonColor);
-      // StdDraw.filledRectangle(buttonX2, buttonY2, buttonW2 / 2, buttonH2 / 2);
-      // // display the text on the start game button
-      // Font font2 = new Font("Arial", Font.PLAIN, 25);
-      // StdDraw.setFont(font2);
-      // StdDraw.setPenColor(textColor);
-      // String textToDisplay2 = "Resume";
-      // StdDraw.text(buttonX2, buttonY2, textToDisplay2);
 
-      // double buttonW3 = 6.5, buttonH3 = 2;
-      // // the center point coordinates of the start game button
-      // double buttonX3 = imgCenterX+4, buttonY3 = 3;
-      // // display the start game button as a filled rectangle
-      // StdDraw.setPenColor(buttonColor);
-      // StdDraw.filledRectangle(buttonX3, buttonY3, buttonW3 / 2, buttonH3 / 2);
-      // // display the text on the start game button
-      // StdDraw.setFont(font);
-      // StdDraw.setPenColor(textColor);
-      // String textToDisplay3 = "Restart";
-      // StdDraw.text(buttonX3, buttonY3, textToDisplay3);
 
       // menu interaction loop
       while (true) {
