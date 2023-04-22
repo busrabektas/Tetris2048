@@ -181,8 +181,7 @@ public class Tetris2048 {
       // colors used for the menu
       GameGrid grid = new GameGrid(gridHeight, gridWidth);
       Color backgroundColor = new Color(	0, 74, 173);
-      Color buttonColor = new Color(255, 255, 255);
-      Color textColor = new Color(	0, 74, 173);
+
       // clear the background canvas to background_color
       StdDraw.clear(backgroundColor);
       // the relative path of the image file
