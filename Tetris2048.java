@@ -240,13 +240,7 @@ public class Tetris2048 {
             // check if these coordinates are inside the button
             if (mouseX > buttonX - buttonW / 2 && mouseX < buttonX + buttonW / 2)
                if (mouseY > buttonY - buttonH / 2 && mouseY < buttonY + buttonH / 2)
-                  break; // break the loop to end the method and start the game
-            // if (mouseX > buttonX2 - buttonW2 / 2 && mouseX < buttonX2 + buttonW2 / 2)
-            //    if (mouseY > buttonY2 - buttonH2 / 2 && mouseY < buttonY2 + buttonH2 / 2)
-            //       break; // break the loop to end the method and start the game
-            // if (mouseX > buttonX3 - buttonW3 / 2 && mouseX < buttonX3 + buttonW3 / 2)
-            //    if (mouseY > buttonY3 - buttonH3 / 2 && mouseY < buttonY3 + buttonH3 / 2)
-            //       gameLoop(grid);; // break the loop to end the method and start the game
+                  break; 
 
          }
       }
