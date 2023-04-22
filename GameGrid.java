@@ -379,16 +379,8 @@ public class GameGrid implements Cloneable{
       double buttonH = 0.9;
       double buttonX = gridWidth-3;
       double buttonY = gridHeight-18;
-      Color buttonColor =new Color(56, 59, 56);
-      Color textColor = new Color(255,255,255);
-      StdDraw.setPenColor(buttonColor);
-      StdDraw.filledRectangle(buttonX, buttonY, buttonW/2, buttonH/2);
-      StdDraw.setPenRadius();
-      Font font = new Font("Arial", Font.BOLD, 15);
-      StdDraw.setFont(font);
-      StdDraw.setPenColor(textColor);
-      String text = "PAUSE";
-      StdDraw.text(buttonX,buttonY,text);
+      String imgFile = "images/pauseButton.png";
+      StdDraw.picture(buttonX,buttonY,imgFile);
       if (StdDraw.isMousePressed()) {
           double mouseX = StdDraw.mouseX(), mouseY = StdDraw.mouseY();
           if (mouseX > buttonX - buttonW / 2 && mouseX < buttonX + buttonW / 2)
