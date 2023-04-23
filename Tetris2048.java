@@ -120,6 +120,17 @@ public class Tetris2048 {
       }
 
    }
+      // A method for creating a random shaped tetromino to enter the game grid *********
+   public static Tetromino createTetromino() {
+      // the type (shape) of the tetromino is determined randomly
+      char[] tetrominoTypes = { 'I', 'O', 'Z','L','J','S','T' };
+      Random random = new Random();
+      int randomIndex = random.nextInt(tetrominoTypes.length);
+      char randomType = tetrominoTypes[randomIndex];
+      // create and return the tetromino
+      Tetromino tetromino = new Tetromino(randomType);
+      return tetromino;
+   }
       // A method for displaying a simple menu before starting the game**********
       public static void PauseMenu(int gridHeight, int gridWidth) throws CloneNotSupportedException {
          // colors used for the menu
